@@ -26,8 +26,8 @@ impl<'de> ::serde::Deserialize<'de> for PaymentSourceParams {
     where
         D: ::serde::de::Deserializer<'de>,
     {
+        use serde::__private::de::{Content, ContentRefDeserializer};
         use serde::de::{Deserialize, Error};
-        use serde::private::de::{Content, ContentRefDeserializer};
         let content = <Content<'_> as Deserialize>::deserialize(deserializer)?;
         let deserializer = ContentRefDeserializer::<D::Error>::new(&content);
         if let Ok(ok) = <SourceId as Deserialize>::deserialize(deserializer) {
